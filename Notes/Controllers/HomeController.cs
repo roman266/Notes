@@ -1,26 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Notes.Data;
 using Notes.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Notes.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly NotesDbContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(NotesDbContext dbContext)
         {
-            _logger = logger;
+            _dbContext = dbContext;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public IActionResult AddNote()
         {
-            return View();
+            return RedirectToAction("AddNote", "Note");
+        }
+
+        [HttpGet]
+        public IActionResult Notes()
+        {
+            var notes = _dbContext
+                .Notes
+                .Where(x => x.UserId.Equals(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+                .ToList();
+
+            return View(notes);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

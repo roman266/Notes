@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Notes.Areas.Identity.Data;
+using Notes.Models;
 
 namespace Notes.Data;
 
@@ -11,6 +11,8 @@ public class NotesDbContext : IdentityDbContext<User>
         : base(options)
     {
     }
+
+    public DbSet<NoteModel> Notes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

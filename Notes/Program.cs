@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Notes.Areas.Identity.Data;
 using Notes.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("NotesDbContextConnection") ?? throw new InvalidOperationException("Connection string 'NotesDbContextConnection' not found.");
 

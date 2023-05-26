@@ -1,0 +1,33 @@
+﻿@model IEnumerable<NoteModel>
+
+@{
+    ViewData["Title"] = "Notes";
+}
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Priority</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Create Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Priority</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.CreateDate</td>
+                <td>
+                    <form action="@Url.Action("DeleteNote", "Note", new { id = item.Id})" method="post">
+                        <button>Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

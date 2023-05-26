@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.header-buttons {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
