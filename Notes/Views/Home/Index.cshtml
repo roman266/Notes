@@ -1,1 +1,14 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using Notes.Areas.Identity.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if(SignInManager.IsSignedIn(User))
+{
+    <div class="centered-container">
+        <form asp-area="" asp-controller="Note" asp-action="AddNote" method="get">
+            <button class="add-note-button">Add Note</button>
+        </form>
+    </div>
+}

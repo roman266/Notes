@@ -59,9 +59,10 @@ body {
         }
 
 .add-note-button {
+    font-size: 16px;
     background-color: #337ab7;
     color: #fff;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 4px;
     text-decoration: none;
 }
@@ -69,3 +70,11 @@ body {
     .add-note-button:hover {
         background-color: #23527c;
     }
+
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
