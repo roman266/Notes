@@ -9,18 +9,23 @@
     <link rel="stylesheet" href="~/Notes.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="header-container">
-                <a class="navbar-brand header-button" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <a class="navbar-brand header-button" asp-area="" asp-controller="Home" asp-action="Notes">Notes</a>
-                <form asp-area="" asp-controller="Note" asp-action="AddNote" method="get">
-                    <button class="header-button">Add Note</button>
-                </form>
-                <partial name="_LoginPartial" />
-            </div>
-        </nav>
-        
+    <header class="header">
+
+        <div class="header-container">
+            <nav class="header-navigation">
+                <ul class="header-menu">
+                    <li class="header-menu-item"><a class="navbar-brand header-button" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="header-menu-item"><a class="navbar-brand header-button" asp-area="" asp-controller="Home" asp-action="Notes">Notes</a></li>
+                </ul>
+                
+            </nav>
+            <form asp-area="" asp-controller="Note" asp-action="AddNote" method="get">
+                <button class="add-note-button">Add Note</button>
+            </form>
+            <partial name="_LoginPartial" />
+        </div>
+
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
