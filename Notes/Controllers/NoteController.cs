@@ -42,7 +42,7 @@ namespace Notes.Controllers
             _dbContext.Notes.Remove(entity);
             _dbContext.SaveChanges();
 
-            return View("Notes", "Home");
+            return RedirectToAction("Notes", "Home");
         }
     }
 }
