@@ -1,0 +1,13 @@
+﻿@model NoteModel
+
+@{
+    ViewData["Title"] = "Add Note";
+}
+
+<form action="@Url.Action("UpdateNote", "Note", new { id = Model.Id})" method="post">
+    <input asp-for="@Model.Title" placeholder="Enter Title" value="@Model.Title" required />
+    <textarea asp-for="@Model.Description" placeholder="Enter Description">@Model.Description</textarea>
+    @Html.DropDownListFor(x => x.Priority, Html.GetEnumSelectList<Priority>())
+    <input type="submit" value="Update" />
+</form>
+

@@ -23,6 +23,11 @@
                 <td>@item.Description</td>
                 <td>@item.CreateDate</td>
                 <td>
+                    <form action="@Url.Action("UpdateNote", "Note", new { id = item.Id})" method="get">
+                        <button>Edit</button>
+                    </form>
+                </td>
+                <td>
                     <form action="@Url.Action("DeleteNote", "Note", new { id = item.Id})" method="post">
                         <button>Delete</button>
                     </form>

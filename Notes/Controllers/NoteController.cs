@@ -14,6 +14,10 @@ namespace Notes.Controllers
             _dbContext = dbContext;
         }
 
+        private NoteModel GetEntityByIdForUser(int id) => _dbContext
+            .Notes
+            .First(x => x.Id.Equals(id) && x.UserId.Equals(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
         [HttpGet]
         public IActionResult AddNote()
         {
@@ -35,11 +39,31 @@ namespace Notes.Controllers
         [HttpPost]
         public IActionResult DeleteNote(int id)
         {
-            var entity = _dbContext
-                .Notes
-                .First(x => x.Id.Equals(id) && x.UserId.Equals(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+            var entity = GetEntityByIdForUser(id);
 
             _dbContext.Notes.Remove(entity);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Notes", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult UpdateNote(int id)
+        {
+            var entity = GetEntityByIdForUser(id);
+
+            return View(entity);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateNote(NoteModel entity)
+        {
+            var currentEntity = GetEntityByIdForUser(entity.Id);
+
+            currentEntity.Title = entity.Title;
+            currentEntity.Description = entity.Description;
+            currentEntity.Priority = entity.Priority;
+
             _dbContext.SaveChanges();
 
             return RedirectToAction("Notes", "Home");
